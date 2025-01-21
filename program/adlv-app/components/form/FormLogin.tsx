@@ -9,6 +9,7 @@ const FormLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault(); // Mencegah reload halaman
@@ -24,18 +25,21 @@ const FormLogin = () => {
     const data = await response.json();
     if (response.ok) {
       Swal.fire({
-        icon: "success",
-        title: "Berhasil!",
-        text: "Login berhasil!",
-      }).then(() => {
+      icon: "success",
+      title: "Berhasil!",
+      text: `Login berhasil sebagai ${
+        data.user.isAdmin ? "Admin" : "User"
+      }!`,
+    }).then(() => {
         router.replace("/"); // Redirect ke halaman utama
       });
     } else {
-      Swal.fire({
-        icon: "error",
-        title: "Gagal!",
-        text: data.error || "Login gagal!",
-      });
+    const errorData = await response.json();
+    Swal.fire({
+      icon: "error",
+      title: "Gagal!",
+      text: errorData.error || "Login gagal!",
+    });
     }
   };
 

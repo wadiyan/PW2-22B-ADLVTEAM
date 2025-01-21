@@ -1,38 +1,30 @@
 "use server";
-import { promises as fs } from "fs";
-import { revalidatePath } from "next/cache";
-// import { redirect } from "next/navigation";
 
-type User = {
-  title: string;
-  description: string;
-  price: string;
-  image: string;
-  category: string;
+import { imageSchema, profileSchema, validateWithZodSchema } from "./schemas";
+import db from "./db";
+import { auth, clerkClient, currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
+
+const getAuthUser = async () => {
+  const user = await currentUser();
+  if (!user) {
+    throw new Error("You must be logged in to access this route");
+  }
+  if (!user.privateMetadata.hasProfile) redirect("/profile/create");
+  return user;
 };
 
-// title       String
-//   description String
-//   price       Float
-//   image       String   // URL gambar produk
-//   category    String
+const renderError = (error: unknown): { message: string } => {
+  return {
+    message: error instanceof Error ? error.message : "an error occoured",
+  };
+};
 
-type State = "create user is successfull" | "failed creating user" | null;
-
-export const createUser = async (
-  state: State,
+export const createProfileAction = async (
+  prevState: any,
   formData: FormData
-): Promise<State> => {
-  "use server";
-  console.log(state);
-  console.log("creating server...");
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-  const title = formData.get("title") as string;
-  const description = formData.get("description") as string;
-  const price = formData.get("price") as string;
-  const image = formData.get("image") as string;
-  const newUsers: User = { title, description, price, image, category:"none"};
-
+) => {
   try {
     const user = await currentUser();
     if (!user) throw new Error("Please login to create a profile");
@@ -60,5 +52,5 @@ export const createUser = async (
       message: error instanceof Error ? error.message : "an error occoured",
     };
   }
-  //   redirect("/");
+  redirect("/");
 };
