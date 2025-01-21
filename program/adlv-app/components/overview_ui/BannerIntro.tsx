@@ -21,8 +21,8 @@ const BannerIntro = () => {
               <p className="py-6 text-black leading-relaxed">
                 <strong>
                   ADLV adalah platform web e-katalog yang didedikasikan untuk
-                  menyediakan informasi pilihan pakaian berkualitas produk ADLV bagi
-                  masyarakat di Bandar Lampung dan sekitarnya.
+                  menyediakan informasi pilihan pakaian berkualitas produk ADLV
+                  bagi masyarakat di Bandar Lampung dan sekitarnya.
                 </strong>
                 Dengan fokus pada gaya modern dan tren terkini, ADLV
                 menghadirkan produk-produk fashion yang dirancang khusus untuk
@@ -30,9 +30,7 @@ const BannerIntro = () => {
                 semi-formal.
               </p>
               <button className="bg-gray-900 text-white hover:bg-gray-700 px-8 py-4 rounded-full transition duration-300">
-                <Link href={"/katalog"}>
-                Lihat Katalog
-                </Link>
+                <Link href={"/katalog"}>Lihat Katalog</Link>
               </button>
             </div>
             <div>

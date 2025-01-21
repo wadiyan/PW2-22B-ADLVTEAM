@@ -1,13 +1,6 @@
-import React from "react";
-import MovingImage from "./components/MovingImage";
-import BannerIntro from "./components/BannerIntro";
-import { InfiniteMovingCard } from "./components/InfiniteMovingCard";
+import BannerIntro from "../../components/overview_ui/BannerIntro";
+import { InfiniteMovingCard } from "../../components/overview_ui/InfiniteMovingCard";
 import Link from "next/link";
-import {BackgroundBeams} from "@/components/ui/background-beams"
-import { BackgroundLines } from "@/components/ui/background-lines";
-import TimerPromo from "./components/TimerPromo";
-import Carrousale from "./components/Carrousale";
-import CardCoutdown from "./components/CardCoutdown";
 
 const HomePage = () => {
   return (
