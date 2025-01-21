@@ -1,4 +1,4 @@
-import { fetchProducts, saveProduct, syncDatabase } from "@/utils/actions";
+import { fetchProducts, saveProduct, syncDatabase } from "@/utils/server";
 import { NextResponse } from "next/server";
 
 export const GET = async (req: Request) => {

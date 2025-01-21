@@ -17,9 +17,17 @@ export async function POST(request: Request) {
       );
     }
 
-    // Tambahkan token atau session handling di sini
-    return NextResponse.json({ message: "Login successful" });
+    // Jika login berhasil, kembalikan informasi pengguna
+    return NextResponse.json({
+      message: "Login successful",
+      user: {
+        id: user.id,
+        email: user.email,
+        isAdmin: user.role === "admin", // Pastikan ada kolom `role` di database Anda
+      },
+    });
   } catch (error) {
+    console.error("Error during login:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

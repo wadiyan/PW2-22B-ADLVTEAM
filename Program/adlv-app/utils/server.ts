@@ -1,57 +1,56 @@
 "use server";
-import { promises as fs } from "fs";
+
+import { imageSchema, profileSchema, validateWithZodSchema } from "./schemas";
+import db from "./db";
+import { auth, clerkClient, currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-// import { redirect } from "next/navigation";
 
-type User = {
-  title: string;
-  description: string;
-  price: string;
-  image: string;
-  category: string;
-};
-
-// title       String
-//   description String
-//   price       Float
-//   image       String   // URL gambar produk
-//   category    String
-
-type State = "create user is successfull" | "failed creating user" | null;
-
-export const createUser = async (
-  state: State,
-  formData: FormData
-): Promise<State> => {
-  "use server";
-  console.log(state);
-  console.log("creating server...");
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-  const title = formData.get("title") as string;
-  const description = formData.get("description") as string;
-  const price = formData.get("price") as string;
-  const image = formData.get("image") as string;
-  const newUsers: User = { title, description, price, image, category:"none"};
-
-  try {
-    await saveUser(newUsers);
-    // revalidatePath("/actions");
-    return "create user is successfull";
-  } catch (e) {
-    console.log(e);
-    return "failed creating user";
+const getAuthUser = async () => {
+  const user = await currentUser();
+  if (!user) {
+    throw new Error("You must be logged in to access this route");
   }
-  //   redirect("/");
-};
-
-export const saveUser = async (user: User) => {
-  const users = await fetchUsers();
-  users.push(user);
-//   await fs.writeFile("users.json", JSON.stringify(users));
-};
-
-export const fetchUsers = async (): Promise<User[]> => {
-  const result = await fs.readFile("users.json", { encoding: "utf8" });
-  const user = result ? JSON.parse(result) : [];
+  if (!user.privateMetadata.hasProfile) redirect("/profile/create");
   return user;
+};
+
+const renderError = (error: unknown): { message: string } => {
+  return {
+    message: error instanceof Error ? error.message : "an error occoured",
+  };
+};
+
+export const createProfileAction = async (
+  prevState: any,
+  formData: FormData
+) => {
+  try {
+    const user = await currentUser();
+    if (!user) throw new Error("Please login to create a profile");
+
+    const rawData = Object.fromEntries(formData);
+    const validatedFields = validateWithZodSchema(profileSchema, rawData);
+
+    await db..create({
+      data: {
+        clerkId: user?.id ?? "",
+        email: user?.emailAddresses[0].emailAddress ?? "",
+        profileImage: user?.imageUrl ?? "",
+        ...validatedFields,
+      },
+    });
+
+    const client = await clerkClient();
+    await client.users.updateUserMetadata(user?.id ?? "", {
+      privateMetadata: {
+        hasProfile: true,
+      },
+    });
+  } catch (error) {
+    return {
+      message: error instanceof Error ? error.message : "an error occoured",
+    };
+  }
+  redirect("/");
 };

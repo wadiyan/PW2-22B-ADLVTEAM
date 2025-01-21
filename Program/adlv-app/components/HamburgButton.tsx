@@ -1,14 +1,27 @@
+"use client";
+
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignOutButton,
+  SignUpButton,
+} from "@clerk/nextjs";
 import React, { useState } from "react";
 import Link from "next/link";
+import { pathLink } from "@/utils/links";
 
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Simulasikan apakah pengguna login dan apakah pengguna adalah admin
+
+  const isLoggedIn = false; // Ganti dengan kondisi login sesungguhnya
+  const isAdmin = false; // Ganti dengan kondisi admin sesungguhnya
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
-  
 
   return (
     <div className="relative z-30">
@@ -37,28 +50,40 @@ const HamburgerMenu = () => {
       {/* Dropdown Menu */}
       {isOpen && (
         <div className="absolute top-10 right-0 bg-white shadow-md rounded-md p-4 w-52">
-          <ul className="flex flex-col space-y-2">
-            <li>
-              <Link href="/login" className="text-gray-700 hover:font-bold">
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link href="/register" className="text-gray-700 hover:font-bold">
-                Daftar
-              </Link>
-            </li>
-            <li>
-              <Link href="/pesanan" className="text-gray-700 hover:font-bold">
-                Pesanan
-              </Link>
-            </li>
-            <li>
-              <Link href="/logout" className="text-gray-700 hover:text-red-500">
-                Log Out
-              </Link>
-            </li>
-          </ul>
+          {/* Login dan Register */}
+          <SignedOut>
+            <div className="flex flex-col hover:font-bold font-medium">
+              <SignInButton />
+            </div>
+            <div className="flex flex-col hover:font-bold font-medium">
+              <SignUpButton />
+            </div>
+          </SignedOut>
+
+          <SignedIn>
+            {/* Menu setelah login */}
+            {pathLink.map((path) => {
+              // Abaikan rute admin jika pengguna bukan admin
+              if (path.href === "/admin" && !isAdmin) {
+                return null;
+              }
+
+              return (
+                <div
+                  key={path.href} // Gunakan href sebagai key (unik)
+                  className="flex flex-col hover:font-bold font-medium"
+                >
+                  <Link href={path.href}>{path.nama}</Link>
+                </div>
+              );
+            })}
+            {/* Logout */}
+            <div className="flex justify-start">
+              <SignOutButton>
+                <button className="w-full text-left">Logout</button>
+              </SignOutButton>
+            </div>
+          </SignedIn>
         </div>
       )}
     </div>
