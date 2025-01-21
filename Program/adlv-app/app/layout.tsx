@@ -1,21 +1,18 @@
 import "@/styles/globals.css";
-import LoadingWrapper from "@/components/animate-bg/LoadingWrapper";
+import LoadingWrapper from "@/components/LoadingWrapper";
 import ConditionalLayout from "./ConditonalLayout";
 import { ClerkProvider } from "@clerk/nextjs";
-import { getAuthData } from "@/utils/getAuthData";
 
 export const metadata = {
   title: "ADLV Store",
   description: "E-Katalog ADLV Store",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-
-  const { isLoggedIn, isAdmin } = await getAuthData();
   return (
     <html lang="en">
       <head>
@@ -23,7 +20,7 @@ export default async function RootLayout({
       </head>
       <body className="flex flex-col min-h-screen">
         <ClerkProvider>
-          <ConditionalLayout isLoggedIn={isLoggedIn} isAdmin={isAdmin}>
+          <ConditionalLayout>
             <LoadingWrapper>{children}</LoadingWrapper>
           </ConditionalLayout>
         </ClerkProvider>

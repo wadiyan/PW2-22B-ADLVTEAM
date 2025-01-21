@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { Carousel, Card } from "@/components/contact/ContactCard";
+import { Carousel, Card } from "@/components/ui/ContactCard";
 
 export default function Page() {
   const cards = data.map((card, index) => (
