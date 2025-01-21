@@ -1,9 +1,15 @@
 "use client";
+
 import Link from "next/link";
 import HamburgerMenu from "./HamburgButton";
-import { BackgroundBeams } from "./ui/background-beams";
+import { BackgroundBeams } from "../animate-bg/background-beams";
 
-const Navbar = () => {
+interface NavbarProps {
+  isLoggedIn: boolean;
+  isAdmin: boolean;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, isAdmin }) => {
   return (
     <nav className="">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between ">
@@ -44,19 +50,7 @@ const Navbar = () => {
 
         {/* Login/Cart Buttons */}
         <div className="space-x-4">
-          {/* <Link
-            href="/login"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-          >
-            Login
-          </Link>
-          <Link
-            href="/cart"
-            className="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300"
-          >
-            Keranjang
-          </Link> */}
-          <HamburgerMenu />
+          <HamburgerMenu isLoggedIn={isLoggedIn} isAdmin={isAdmin} />
         </div>
         <BackgroundBeams />
       </div>
