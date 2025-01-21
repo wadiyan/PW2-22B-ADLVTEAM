@@ -1,6 +1,6 @@
 "use client";
 
-import LoadingWrapper from "@/components/LoadingWrapper";
+import LoadingWrapper from "@/components/animate-bg/LoadingWrapper";
 import React, { useState } from "react";
 import Link from "next/link";
 
@@ -289,7 +289,9 @@ const Page = () => {
                 Harga: Rp{item.price.toLocaleString()}
               </p>
               <button className="w-full bg-gray-900 text-white py-2 rounded-md hover:bg-gray-600">
-                <Link href={`/katalog/detail_produk?id=${item.id}`} >Masukkan ke Keranjang</Link>
+                <Link href={`/katalog/detail_produk?id=${item.id}`}>
+                  Masukkan ke Keranjang
+                </Link>
               </button>
             </div>
           ))}

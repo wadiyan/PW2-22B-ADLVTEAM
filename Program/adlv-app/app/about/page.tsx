@@ -1,6 +1,6 @@
 import React from "react";
-import LoadingWrapper from "@/components/LoadingWrapper";
-import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+import LoadingWrapper from "@/components/animate-bg/LoadingWrapper";
+import { AnimatedTestimonials } from "@/components/animate-bg/animated-testimonials";
 
 const AboutPage = () => {
   const testimonials = [

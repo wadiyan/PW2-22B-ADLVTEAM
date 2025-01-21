@@ -15,9 +15,9 @@ const isPublicRoute = createRouteMatcher([
 const isAdminRoute = createRouteMatcher(["/admin-dashboard(.*)"]);
 
 export default clerkMiddleware(async (auth, request) => {
-//   const isAdminUser = (await auth()).userId === process.env.ADMIN_USER_ID;
-  const isAdminUser = (await auth()).userId
-  console.log(isAdminUser)
+  const isAdminUser = (await auth()).userId === process.env.ADMIN_USER_ID;
+  // const isAdminUser = (await auth()).userId
+  // console.log(isAdminUser)
 
   if (isAdminRoute(request) && !isAdminUser) {
     return NextResponse.redirect(new URL("/", request.url));
