@@ -1,30 +1,30 @@
 [
   {
-    "title": "Product 1",
+    "title": "Product ss1",
     "description": "Description of product 1",
     "price": 100,
-    "image": "https://example.com/image1.jpg",
+    "image": "",
     "category": "Category 1"
   },
   {
     "title": "Product 1",
     "description": "Description of product 1",
     "price": 100,
-    "image": "https://example.com/image1.jpg",
+    "image": "",
     "category": "Category 1"
   },
   {
     "title": "Product 1",
     "description": "Description of product 1",
     "price": 100,
-    "image": "https://example.com/image1.jpg",
+    "image": "",
     "category": "Category 1"
   },
   {
     "title": "Product 1",
     "description": "Description of product 1",
     "price": 100,
-    "image": "https://example.com/image1.jpg",
+    "image": "",
     "category": "Category 1",
     "id": "1736895648245"
   },
@@ -32,7 +32,7 @@
     "title": "Product 1",
     "description": "Description of product 1",
     "price": 100,
-    "image": "https://example.com/image1.jpg",
+    "image": "",
     "category": "Category 1",
     "id": "1736895718177"
   },
@@ -40,7 +40,7 @@
     "title": "Product 1",
     "description": "Description of product 1",
     "price": 100,
-    "image": "https://example.com/image1.jpg",
+    "image": "",
     "category": "Category 1",
     "id": "1736895721058"
   },
@@ -48,7 +48,7 @@
     "title": "Product 1",
     "description": "Description of product 1",
     "price": 100,
-    "image": "https://example.com/image1.jpg",
+    "image": "",
     "category": "Category 1",
     "id": "1736895723599"
   },
@@ -56,7 +56,7 @@
     "title": "Product 1",
     "description": "Description of product 1",
     "price": 100,
-    "image": "https://example.com/image1.jpg",
+    "image": "",
     "category": "Category 1",
     "id": "1736895723805"
   },
@@ -64,7 +64,7 @@
     "title": "Product 1",
     "description": "Description of product 1",
     "price": 100,
-    "image": "https://example.com/image1.jpg",
+    "image": "",
     "category": "Category 1",
     "id": "1736895723975"
   },
@@ -72,7 +72,7 @@
     "title": "Product 1",
     "description": "Description of product 1",
     "price": 100,
-    "image": "https://example.com/image1.jpg",
+    "image": "",
     "category": "Category 1",
     "id": "1736895724162"
   },
@@ -80,7 +80,7 @@
     "title": "Product 1",
     "description": "Description of product 1",
     "price": 100,
-    "image": "https://example.com/image1.jpg",
+    "image": "",
     "category": "Category 1",
     "id": "1736895724343"
   }

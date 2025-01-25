@@ -1,14 +1,15 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/navbar/Navbar";
+import Footer from "@/components/navbar/Footer";
 
-export default function ConditionalLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+type WhoIsSigned = {
+  userId: string | undefined | null | boolean;
+  children: React.ReactNode
+}
+
+export default function ConditionalLayout(props: WhoIsSigned) {
   const pathname = usePathname();
 
   // Daftar halaman tanpa layout
@@ -19,13 +20,17 @@ export default function ConditionalLayout({
     "/katalog/detail_produk/pembayaran",
     "/pesanan",
   ];
+  const hideLayoutFooterRoutes = [
+    "/admin",
+  ];
   const shouldHideLayout = hideLayoutRoutes.includes(pathname);
+  const shouldHideFooterLayout = hideLayoutFooterRoutes.includes(pathname);
 
   return (
     <>
       {!shouldHideLayout && (
         <header className="bg-gradient-to-r from-gray-900 to-gray-700 p-4">
-          <Navbar />
+          <Navbar userId={props.userId} />
         </header>
       )}
       <main
@@ -33,9 +38,9 @@ export default function ConditionalLayout({
           shouldHideLayout ? "" : "with-layout"
         }`}
       >
-        {children}
+        {props.children}
       </main>
-      {!shouldHideLayout && <Footer />}
+      {!shouldHideFooterLayout && <Footer />}
     </>
   );
 }
