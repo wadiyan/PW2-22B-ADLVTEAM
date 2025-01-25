@@ -13,40 +13,45 @@ const config: Config = {
   ],
   darkMode: ["class"],
   theme: {
-    extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        kiwkiw: "#eaeef1",
-        ...colors,
-      },
-      animation: {
-        marquee: "marquee 10s linear infinite",
-        scroll:
-          "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
-      },
-      keyframes: {
-        marquee: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-100%)" },
-        },
-        scroll: {
-          to: { transform: "translate(calc(-50% - 0.5rem))" },
-        },
-      },
-      height: {
-        "90vh": "90vh",
-        "100vh": "100vh",
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      boxShadow: {
-        custom: "0 0 4px rgba(0,0,0,0.25)",
-      },
-    },
+  	extend: {
+  		colors: {
+  			background: 'var(--background)',
+  			foreground: 'var(--foreground)',
+  			kiwkiw: '#eaeef1',
+                ...colors
+  		},
+  		animation: {
+  			marquee: 'marquee 10s linear infinite',
+  			scroll: 'scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite'
+  		},
+  		keyframes: {
+  			marquee: {
+  				'0%': {
+  					transform: 'translateX(0)'
+  				},
+  				'100%': {
+  					transform: 'translateX(-100%)'
+  				}
+  			},
+  			scroll: {
+  				to: {
+  					transform: 'translate(calc(-50% - 0.5rem))'
+  				}
+  			}
+  		},
+  		height: {
+  			'90vh': '90vh',
+  			'100vh': '100vh'
+  		},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		},
+  		boxShadow: {
+  			custom: '0 0 4px rgba(0,0,0,0.25)'
+  		}
+  	}
   },
   plugins: [
     require("daisyui"),

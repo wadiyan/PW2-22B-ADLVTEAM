@@ -1,6 +1,14 @@
 import * as z from "zod";
 import { ZodSchema } from "zod";
 
+export const validateAddCatalogWithZod = z.object({
+  title: z.string().max(20, { message: "max length is 20" }),
+  description: z.string().max(20, { message: "max length is 20" }),
+  image: z.string().max(20, { message: "max length is 20" }),
+  price: z.string().max(20, { message: "max length is 20" }),
+  category: z.string().max(20, { message: "max length is 20" }),
+});
+
 export const profileSchema = z.object({
   // firstName: z.string().max(5, { message: 'max length is 5' }),
   firstName: z.string().min(2, {
@@ -12,6 +20,18 @@ export const profileSchema = z.object({
   username: z.string().min(2, {
     message: "username must be at least 2 characters",
   }),
+  // description: z.string().min(2, {
+  //   message: "username must be at least 2 characters",
+  // }),
+  // price: z.string().min(2, {
+  //   message: "username must be at least 2 characters",
+  // }),
+  // image: z.string().min(2, {
+  //   message: "username must be at least 2 characters",
+  // }),
+  // category: z.string().min(2, {
+  //   message: "username must be at least 2 characters",
+  // }),
 });
 
 export function validateWithZodSchema<T>(
@@ -46,4 +66,36 @@ function validateFile({
 
 export const imageSchema = z.object({
   image: validateFile(),
+});
+
+//  id          String @id @default(uuid())
+//   name        String
+//   description String
+//   price       String
+//   category    String
+//   image       String
+//   createdAt   DateTime @default(now())
+//   updateAt    DateTime @updatedAt
+//   user     User @relation(fields: [UserId], references: [clerkId],onDelete: Cascade)
+//   UserId   String
+export const propertySchema = z.object({
+  name: z
+    .string()
+    .min(2, {
+      message: "name must be at least 2 characters.",
+    })
+    .max(100, {
+      message: "name must be less than 100 characters.",
+    }),
+  description: z.string().refine(
+    (description) => {
+      const wordCount = description.split(" ").length;
+      return wordCount >= 10 && wordCount <= 1000;
+    },
+    {
+      message: "description must be between 10 and 1000 words.",
+    }
+  ),
+  price: z.string(),
+  category: z.string(),
 });

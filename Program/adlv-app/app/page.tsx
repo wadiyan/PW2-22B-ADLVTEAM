@@ -1,8 +1,7 @@
 "use client";
 import HomePage from "@/app/overview/page";
-// import { InfiniteMovingCardsDemo } from "./test/Page";
 
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <HomePage />
