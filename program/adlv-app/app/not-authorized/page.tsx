@@ -1,6 +1,6 @@
 function NotAuthorized() {
   return (
-    <div>NotAuthorized</div>
+    <div className="flex justify-center items-center">Silakan Login Terlebih dahulu</div>
   )
 }
 
