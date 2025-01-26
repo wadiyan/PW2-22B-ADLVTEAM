@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Catalog" ALTER COLUMN "UserId" DROP NOT NULL;

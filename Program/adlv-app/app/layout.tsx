@@ -15,19 +15,19 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const isAdminUser = (await auth()).userId === process.env.ADMIN_USER_ID;
+  const isAdminUser = (await auth()).userId;
   return (
-    <html lang="en">
-      <head>
-        <link rel="icon" href="/assets/icons/ADLV.png" type="image/x-icon" />
-      </head>
-      <body className="flex flex-col min-h-screen">
-        <ClerkProvider>
+    <ClerkProvider>
+      <html lang="en">
+        <head>
+          <link rel="icon" href="/assets/icons/ADLV.png" type="image/x-icon" />
+        </head>
+        <body className="flex flex-col min-h-screen">
           <ConditionalLayout userId={isAdminUser}>
-              <LoadingWrapper>{children}</LoadingWrapper>
+            <LoadingWrapper>{children}</LoadingWrapper>
           </ConditionalLayout>
-        </ClerkProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

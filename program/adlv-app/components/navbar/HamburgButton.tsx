@@ -17,6 +17,7 @@ type WhoIsSigned = {
 
 function HamburgerMenu(props: WhoIsSigned) {
   const [isOpen, setIsOpen] = useState(false);
+  const isAdminUser = props.userId === process.env.ADMIN_USER_ID
 
   // const isLoggedIn = false; // Ganti dengan kondisi login sesungguhnya
   // const isAdmin = false; // Ganti dengan kondisi admin sesungguhnya
@@ -70,7 +71,7 @@ function HamburgerMenu(props: WhoIsSigned) {
             {/* Menu setelah login */}
             {pathLink.map((path) => {
               // Abaikan rute admin jika pengguna bukan admin
-              if (path.nama === "admin" && !props.userId) {
+              if (path.nama === "admin" && isAdminUser) {
                 return null;
               }
 
