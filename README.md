@@ -15,29 +15,16 @@ Website resmi untuk **ADLV** yang menawarkan berbagai produk seperti jaket, kaos
    npm install @tabler/icons-react
    ```
 3. **Buat database bernama adlv-app di xampp**
-4. **Buat file dengan nama .env**
-   ```bash
-   DATABASE_URL="mysql://root:@localhost:3306/adlv-app"
-   ```
-   (jika memakai password)
-   ```bash
-   DATABASE_URL="mysql://root:(pw disini)@localhost:3306/adlv-app"
-   ```
-   example:
-   ```bash
-   DATABASE_URL="mysql://root:123@localhost:3306/adlv-app"
-   ```
-5. **migrate prisma**
-   ```bash
-   npx prisma migrate dev
-   ```
-6. **Jalankan aplikasi**
+
+4. **Jalankan aplikasi**
    ```bash
    npm run dev
    ```
 
-7. **Akses aplikasi**
+5. **Akses aplikasi**
    - Buka di browser: [http://localhost:3000](http://localhost:3000)
+  
+6. Catatan: ```jika tampil invalid mounted routed``` close vs code dan buka lagi
 
 
 ## Fitur Utama
