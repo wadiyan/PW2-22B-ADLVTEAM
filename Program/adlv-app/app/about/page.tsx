@@ -6,21 +6,21 @@ const AboutPage = () => {
   const testimonials = [
     {
       quote:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem aut ea aliquam vero quam, quae similique nobis earum delectus! Modi culpa quidem voluptas perspiciatis laboriosam molestias quibusdam nulla iste maiores.",
+        "saya mahasiswa IT, adalah inovator masa depan. Dengan semangat belajar yang tak pernah padam, kami menjelajahi dunia teknologi untuk menciptakan solusi cerdas yang mempermudah hidup manusia. Dalam perjalanan ini, kami berkomitmen untuk terus belajar, beradaptasi, dan memberikan kontribusi nyata kepada masyarakat",
       name: "Wadiyan",
       designation: "Student at Universitas Teknokrat Indonesia",
       src: "/assets/images/wadi.jpg",
     },
     {
       quote:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem aut ea aliquam vero quam, quae similique nobis earum delectus! Modi culpa quidem voluptas perspiciatis laboriosam molestias quibusdam nulla iste maiores.",
+        "Teknologi adalah masa depan, dan kami adalah arsiteknya. Sebagai mahasiswa IT, kami percaya pada kekuatan logika, kreativitas, dan kolaborasi. Dengan keberanian menghadapi tantangan serta semangat untuk terus berkembang, kami siap membangun dunia yang lebih terhubung dan efisien melalui teknologi.",
       name: "Hafidz Ferzino Afrani",
       designation: "Student at Universitas Teknokrat Indonesia",
       src: "/assets/images/hafiz.jpg",
     },
     {
       quote:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem aut ea aliquam vero quam, quae similique nobis earum delectus! Modi culpa quidem voluptas perspiciatis laboriosam molestias quibusdam nulla iste maiores.",
+        "Belajar, berinovasi, dan memberikan dampak positif adalah misi kami. Sebagai mahasiswa IT, kami percaya bahwa teknologi adalah alat untuk membangun masa depan yang lebih baik. Dengan dedikasi dan tekad, kami siap menciptakan karya yang tidak hanya berguna, tetapi juga menginspirasi generasi mendatang.",
       name: "Rexlicky Verdhika Sagatha",
       designation: "Student at Universitas Teknokrat Indonesia",
       src: "/assets/images/Rexlicky .jpg",
