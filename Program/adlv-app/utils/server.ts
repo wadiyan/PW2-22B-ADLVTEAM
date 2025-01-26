@@ -1,42 +1,21 @@
 "use server";
 
+import { currentUser } from "@clerk/nextjs/server";
+import { revalidatePath } from "next/cache";
 import db from "./db";
-import { auth, currentUser, clerkClient } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
 import {
-  validateWithZodSchema,
+  imageSchema,
   profileSchema,
   propertySchema,
-  imageSchema,
+  validateWithZodSchema,
 } from "./schemas";
 import { uploadImage } from "./supabase";
-import { revalidatePath } from "next/cache";
-
-const getAuthUser = async () => {
-  const user = await currentUser();
-  if (!user) {
-    throw new Error("You must be logged in to access this route");
-  }
-
-  // Pastikan `privateMetadata` diakses dengan aman
-  const hasProfile = user.privateMetadata?.hasProfile;
-  if (!hasProfile) {
-    redirect("/profile/create");
-  }
-  return user;
-};
-
-const renderError = (error: unknown): { message: string } => {
-  return {
-    message: error instanceof Error ? error.message : "an error occoured",
-  };
-};
 
 export const createPropertyAction = async (
   prevState: any,
   formData: FormData
 ): Promise<{ message: string }> => {
-  const user = await getAuthUser();
+  const user = await currentUser();
   try {
     const rawData = Object.fromEntries(formData);
     const file = formData.get("image") as File;
@@ -50,18 +29,16 @@ export const createPropertyAction = async (
       data: {
         ...validatedFields,
         image: fullPath,
-        UserId: user.id,
+        UserId: user?.id ?? "",
       },
     });
-    revalidatePath('/admin');
+    revalidatePath("/admin");
     return { message: "Item successfull added" };
   } catch (error) {
     return {
       message: error instanceof Error ? error.message : "an error occoured",
     };
   }
-
-  
 };
 
 export const fetchProperties = async ({ UserId }: { UserId: string }) => {
@@ -131,9 +108,13 @@ export const createProfileAction = async (
   return { message: "Profil sudah pernah dibuat" };
 };
 
-
-
-export async function deleteProperty({ id, userId }: { id: string; userId: string }) {
+export async function deleteProperty({
+  id,
+  userId,
+}: {
+  id: string;
+  userId: string;
+}) {
   try {
     // Menghapus properti berdasarkan ID dan userId
     const property = await db.catalog.deleteMany({
@@ -144,7 +125,7 @@ export async function deleteProperty({ id, userId }: { id: string; userId: strin
     });
 
     // Jika count lebih besar dari 0, berarti ada properti yang berhasil dihapus
-    revalidatePath('/admin')
+    revalidatePath("/admin");
     if (property.count > 0) {
       return { success: true }; // Penghapusan berhasil
     }
@@ -184,15 +165,14 @@ export async function updateProperty({
         image, // Jika mengubah gambar, pastikan untuk menangani file dengan benar
       },
     });
-    revalidatePath('/admin')
+    revalidatePath("/admin");
     return { success: true, updatedProperty };
   } catch (error) {
     console.error(error);
-    revalidatePath('/admin')
+    revalidatePath("/admin");
     return { success: false, message: "Error updating property" };
   }
 }
-
 
 export async function getallData() {
   try {

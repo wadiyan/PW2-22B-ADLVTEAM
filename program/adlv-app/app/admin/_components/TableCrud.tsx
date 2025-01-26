@@ -1,5 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
-import { fetchProperties } from "@/utils/server"; // Pastikan path fungsi sesuai
+import { fetchProperties, getallData } from "@/utils/server"; // Pastikan path fungsi sesuai
 import {
   Table,
   TableBody,
@@ -26,7 +26,7 @@ export default async function TableCrud() {
   }
 
   // Ambil data properti berdasarkan userId
-  const properties = await fetchProperties({ UserId: userId });
+  const properties = await getallData();
   
 
   if (properties.length === 0) {
