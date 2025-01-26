@@ -194,11 +194,17 @@ export async function updateProperty({
 }
 
 
-export async function getallData({ UserId }: { UserId: string }) {
+export async function getallData() {
   try {
-    // Misalnya menggunakan Prisma untuk mengambil data
     const properties = await db.catalog.findMany({
-      where: { UserId: UserId },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        category: true,
+        price: true,
+        image: true,
+      },
     });
 
     return properties;

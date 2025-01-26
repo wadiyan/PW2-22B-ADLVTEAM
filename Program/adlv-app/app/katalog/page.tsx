@@ -1,24 +1,26 @@
 import LoadingWrapper from "@/components/navbar/LoadingWrapper";
-import { auth } from "@clerk/nextjs/server"; // Ambil userId dari Clerk
 import { getallData } from "@/utils/server";
 import Image from "next/image"; // Ambil data properti berdasarkan UserId
 import Link from "next/link";
 
 export async function CatalogPage() {
-   // Ambil userId dari Clerk
-    const { userId } = await auth();
-  
-    if (!userId) {
-      return <div>Unauthorized</div>; // Tampilkan pesan jika user tidak terautentikasi
-    }
-  
-    // Ambil data properti berdasarkan userId
-    const properties = await getallData({ UserId: userId });
-    
-  
-    if (properties.length === 0) {
-      return <div className="flex justify-center items-center w-full">Items kosong</div>; // Tampilkan pesan jika tidak ada data
-    }
+  // Ambil userId dari Clerk
+  // const { userId } = await auth();
+
+  // if (!userId) {
+  //   return <div>Unauthorized</div>; // Tampilkan pesan jika user tidak terautentikasi
+  // }
+
+  // Ambil data properti berdasarkan userId
+  const properties = await getallData();
+
+  if (properties.length === 0) {
+    return (
+      <div className="flex justify-center items-center w-full">
+        Items kosong
+      </div>
+    ); // Tampilkan pesan jika tidak ada data
+  }
   return (
     <div className="min-h-screen p-4 bg-gray-100">
       <LoadingWrapper>
