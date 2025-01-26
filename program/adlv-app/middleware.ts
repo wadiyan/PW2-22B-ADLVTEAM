@@ -18,7 +18,7 @@ export default clerkMiddleware(async (auth, request) => {
   if (isAdminRoute(request) && !isAdminUser) {
     return NextResponse.redirect(new URL("/", request.url));
   }
-  if (isKeranjang(request) && !isAdminUser) {
+  if (isKeranjang(request) && !isKeranjang) {
     return NextResponse.redirect(new URL("/not-authorized", request.url));
   }
 
