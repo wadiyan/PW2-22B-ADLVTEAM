@@ -33,5 +33,5 @@ model Catalog {
   createdAt   DateTime @default(now())
   updateAt    DateTime @updatedAt
   user        User @relation(fields: [UserId], references: [clerkId],onDelete: Cascade)
-  UserId      String
+  UserId      String 
 }

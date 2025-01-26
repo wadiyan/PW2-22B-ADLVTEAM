@@ -21,13 +21,13 @@ function FormContainer({
 
   // Menampilkan SweetAlert saat `state.message` berubah
   useEffect(() => {
-    if (state.message == "Item successfull added") {
+    if (state.message) {
       Swal.fire({
         icon: "success",
         title: "Notification",
         text: state.message,
       });
-    }else if (state.message) {
+    } else if (state.message) {
       Swal.fire({
         icon: "error",
         title: "Notification",

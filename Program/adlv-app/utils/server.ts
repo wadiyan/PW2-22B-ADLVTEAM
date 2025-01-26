@@ -96,22 +96,41 @@ export const createProfileAction = async (
     const rawData = Object.fromEntries(formData);
     const validatedFields = validateWithZodSchema(profileSchema, rawData);
 
-    await db.user.create({
-      data: {
-        clerkId: user?.id ?? "",
-        email: user?.emailAddresses[0].emailAddress ?? "",
-        profileImage: user?.imageUrl ?? "",
+    // Periksa apakah pengguna sudah ada
+    const existingUser = await db.user.findUnique({
+      where: { clerkId: user.id },
+    });
+
+    if (existingUser) {
+      throw new Error("Profile already exists. Please update your profile.");
+    }
+
+    await db.user.upsert({
+      where: {
+        clerkId: user.id, // Cari berdasarkan clerkId
+      },
+      update: {
+        email: user.emailAddresses[0].emailAddress ?? "",
+        profileImage: user.imageUrl ?? "",
+        ...validatedFields,
+      },
+      create: {
+        clerkId: user.id ?? "",
+        email: user.emailAddresses[0].emailAddress ?? "",
+        profileImage: user.imageUrl ?? "",
         ...validatedFields,
       },
     });
+    revalidatePath("/");
+    return { message: "Profil berhasil dibuat" };
   } catch (error) {
     return {
-      message: error instanceof Error ? error.message : "an error occoured",
+      message: error instanceof Error ? error.message : "An error occurred",
     };
   }
-
-  return redirect("/");
+  return { message: "Profil sudah pernah dibuat" };
 };
+
 
 
 export async function deleteProperty({ id, userId }: { id: string; userId: string }) {
