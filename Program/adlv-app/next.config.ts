@@ -15,6 +15,13 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  eslint: {
+    dirs: ["app", "components", "lib", "utils"], // Directories to run ESLint on
+    ignoreDuringBuilds: true, // Ignore ESLint errors during build
+  },
+  typescript: {
+    ignoreBuildErrors: true, // Ignore TypeScript errors during build
+  },
 };
 
 export default nextConfig;

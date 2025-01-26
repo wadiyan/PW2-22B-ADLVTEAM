@@ -85,5 +85,3 @@ export default async function TableCrud() {
     </Table>
   );
 }
-
-// T-shirt hitam polosan berbahan katun lembut, nyaman dipakai sepanjang hari untuk aktivitas sehari-hari.
