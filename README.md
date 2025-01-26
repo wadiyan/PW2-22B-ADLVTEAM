@@ -19,7 +19,10 @@ https://adlv-app-wadiyan-wadiyans-projects.vercel.app
    npm install
    npm install @tabler/icons-react
    ```
-3. **Buat database bernama adlv-app di xampp**
+3. **Generate prisma**
+``` bash
+npx prisma generate
+```
 
 4. **Jalankan aplikasi**
    ```bash
@@ -29,7 +32,7 @@ https://adlv-app-wadiyan-wadiyans-projects.vercel.app
 5. **Akses aplikasi**
    - Buka di browser: [http://localhost:3000](http://localhost:3000)
   
-6. Catatan: ```jika tampil invalid mounted routed``` close vs code dan buka lagi
+7. Catatan: ```jika tampil invalid mounted routed bisa jadi karena sistem tidak mendeteksi sebagai next js refresh terus npm run dev sampai berhasil``` close vs code dan buka lagi
 
 
 ## Fitur Utama
