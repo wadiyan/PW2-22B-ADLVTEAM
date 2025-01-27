@@ -1,9 +1,7 @@
-import "@/styles/globals.css";
 import LoadingWrapper from "@/components/navbar/LoadingWrapper";
-import ConditionalLayout from "./ConditonalLayout";
+import "@/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import { auth } from "@clerk/nextjs/server";
-import CreateProfilePage from "./profile/page";
+import ConditionalLayout from "./ConditonalLayout";
 
 export const metadata = {
   title: "ADLV Store",
@@ -22,7 +20,7 @@ export default async function RootLayout({
           <link rel="icon" href="/assets/icons/ADLV.png" type="image/x-icon" />
         </head>
         <body className="flex flex-col min-h-screen">
-          <ConditionalLayout >
+          <ConditionalLayout>
             <LoadingWrapper>{children}</LoadingWrapper>
           </ConditionalLayout>
         </body>
