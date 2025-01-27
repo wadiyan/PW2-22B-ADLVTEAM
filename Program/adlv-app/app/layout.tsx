@@ -15,7 +15,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const isAdminUser = (await auth()).userId;
   return (
     <ClerkProvider>
       <html lang="en">
@@ -23,7 +22,7 @@ export default async function RootLayout({
           <link rel="icon" href="/assets/icons/ADLV.png" type="image/x-icon" />
         </head>
         <body className="flex flex-col min-h-screen">
-          <ConditionalLayout userId={isAdminUser}>
+          <ConditionalLayout >
             <LoadingWrapper>{children}</LoadingWrapper>
           </ConditionalLayout>
         </body>

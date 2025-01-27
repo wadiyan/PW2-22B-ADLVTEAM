@@ -36,7 +36,7 @@ export const createPropertyAction = async (
     return { message: "Item successfull added" };
   } catch (error) {
     return {
-      message: error instanceof Error ? error.message : "an error occoured",
+      message: error instanceof Error ? error.message : "login terlebih dahulu",
     };
   }
 };

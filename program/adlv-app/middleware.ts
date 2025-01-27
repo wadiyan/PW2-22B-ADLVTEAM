@@ -1,18 +1,29 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
+
 const isPublicRoute = createRouteMatcher([
   "/checkout(.*)",
   "/pesanan(.*)",
   "/profile(.*)",
+  "/admin(.*)",
 ]);
 
 const isKeranjang = createRouteMatcher(["/katalog/pembayaran(.*)"]);
 const isAdminRoute = createRouteMatcher(["/admin(.*)"]);
 
 export default clerkMiddleware(async (auth, request) => {
-  const isAdminUser = (await auth()).userId === process.env.ADMIN_USER_ID;
-  console.log(isAdminUser);
+  const isAdminUser = (await auth()).userId == process.env.ADMIN_USER_ID;
+  const idUser = (await auth()).userId;
+  
+
+  if (!isAdminUser) {
+    console.log(`Admin sedang login dengan user id :${idUser}`);
+  } else if (idUser == null) {
+    console.log("silakan login terlebih dahulu :)");
+  } else {
+    console.log(`user bukan admin sedang login dengan user id: ${idUser}`);
+  }
 
   if (isAdminRoute(request) && !isAdminUser) {
     return NextResponse.redirect(new URL("/", request.url));

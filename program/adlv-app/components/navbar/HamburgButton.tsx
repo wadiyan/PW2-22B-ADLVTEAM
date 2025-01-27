@@ -10,14 +10,17 @@ import {
 import React, { useState } from "react";
 import Link from "next/link";
 import { pathLink } from "@/utils/links";
+import { useUser } from "@clerk/nextjs";
 
-type WhoIsSigned = {
-  userId: string | undefined | null | boolean;
-};
-
-function HamburgerMenu(props: WhoIsSigned) {
+function HamburgerMenu() {
   const [isOpen, setIsOpen] = useState(false);
-  const isAdminUser = props.userId === process.env.ADMIN_USER_ID
+   const { user } = useUser();
+
+   // Akses custom metadata
+   const role = user?.publicMetadata?.role;
+
+   // Cek apakah pengguna adalah admin
+   const isAdmin = role === "admin";
 
   // const isLoggedIn = false; // Ganti dengan kondisi login sesungguhnya
   // const isAdmin = false; // Ganti dengan kondisi admin sesungguhnya
@@ -71,7 +74,7 @@ function HamburgerMenu(props: WhoIsSigned) {
             {/* Menu setelah login */}
             {pathLink.map((path) => {
               // Abaikan rute admin jika pengguna bukan admin
-              if (path.nama === "admin" && isAdminUser) {
+              if (path.href === "/admin" && !isAdmin) {
                 return null;
               }
 

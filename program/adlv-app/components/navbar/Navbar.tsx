@@ -1,13 +1,9 @@
 "use client";
 import Link from "next/link";
-import HamburgerMenu from "./HamburgButton";
 import { BackgroundBeams } from "../bg-animate-ui/background-beams";
+import HamburgerMenu from "./HamburgButton";
 
-type WhoIsSigned = {
-  userId: string | undefined | null | boolean;
-};
-
-function Navbar(props: WhoIsSigned){
+function Navbar() {
   return (
     <nav className="">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between ">
@@ -60,12 +56,12 @@ function Navbar(props: WhoIsSigned){
           >
             Keranjang
           </Link> */}
-          <HamburgerMenu userId={props.userId} />
+          <HamburgerMenu />
         </div>
         <BackgroundBeams />
       </div>
     </nav>
   );
-};
+}
 
 export default Navbar;
