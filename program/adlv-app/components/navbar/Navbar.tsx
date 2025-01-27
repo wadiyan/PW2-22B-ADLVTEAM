@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { BackgroundBeams } from "../bg-animate-ui/background-beams";
+import { BackgroundBeams } from "../bg-animate-ui/BackgroundBeams";
 import HamburgerMenu from "./HamburgButton";
 
 function Navbar() {
