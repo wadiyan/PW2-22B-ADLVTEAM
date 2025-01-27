@@ -3,8 +3,8 @@
 Website resmi untuk **ADLV** yang menawarkan berbagai produk seperti jaket, kaos, dan hoodie dengan fitur lengkap untuk pengalaman belanja online yang optimal. 🛒✨
 
 ## Link Deploy Vercel 
-```
-https://adlv-app-wadiyan-wadiyans-projects.vercel.app
+```bash
+https://adlv-app.vercel.app/
 ```
 
 ## Getting Started
