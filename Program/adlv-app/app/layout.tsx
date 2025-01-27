@@ -1,7 +1,7 @@
+import ConditionalLayout from "@/components/navbar/conditonallayout";
 import LoadingWrapper from "@/components/navbar/LoadingWrapper";
 import "@/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import ConditionalLayout from "./conditonallayout";
 
 export const metadata = {
   title: "ADLV Store",

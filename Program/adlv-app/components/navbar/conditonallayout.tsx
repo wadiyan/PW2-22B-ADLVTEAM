@@ -1,8 +1,8 @@
 "use client";
 
 import Footer from "@/components/navbar/Footer";
-import Navbar from "../components/navbar/Navbar";
 import { usePathname } from "next/navigation";
+import Navbar from "./Navbar";
 
 type ReactNode = {
   children: React.ReactNode;
